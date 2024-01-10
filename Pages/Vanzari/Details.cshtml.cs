@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Vrote_Diana.Data;
 using Vrote_Diana.Models;
 
-namespace Vrote_Diana.Pages.Rents
+namespace Vrote_Diana.Pages.Vanzari
 {
     public class DetailsModel : PageModel
     {
@@ -19,23 +19,23 @@ namespace Vrote_Diana.Pages.Rents
             _context = context;
         }
 
-      public Rent Rent { get; set; } = default!; 
+      public Vanzare Vanzare { get; set; } = default!; 
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Rent == null)
+            if (id == null || _context.Vanzare == null)
             {
                 return NotFound();
             }
 
-            var rent = await _context.Rent.FirstOrDefaultAsync(m => m.ID == id);
-            if (rent == null)
+            var vanzare = await _context.Vanzare.FirstOrDefaultAsync(m => m.ID == id);
+            if (vanzare == null)
             {
                 return NotFound();
             }
             else 
             {
-                Rent = rent;
+                Vanzare = vanzare;
             }
             return Page();
         }

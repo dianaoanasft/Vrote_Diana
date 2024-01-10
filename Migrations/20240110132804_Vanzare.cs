@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Vrote_Diana.Migrations
 {
-    public partial class Rent : Migration
+    public partial class Vanzare : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,56 +15,57 @@ namespace Vrote_Diana.Migrations
                 newName: "ID");
 
             migrationBuilder.AddColumn<int>(
-                name: "RentID",
+                name: "VanzareID",
                 table: "Home",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.CreateTable(
-                name: "Rent",
+                name: "Vanzare",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PossibleBuyerID = table.Column<int>(type: "int", nullable: true),
                     HomeID = table.Column<int>(type: "int", nullable: true),
-                    ReturnDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DataVanzare = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PretVanzare = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Rent", x => x.ID);
+                    table.PrimaryKey("PK_Vanzare", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Rent_Home_HomeID",
+                        name: "FK_Vanzare_Home_HomeID",
                         column: x => x.HomeID,
                         principalTable: "Home",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Rent_PossibleBuyer_PossibleBuyerID",
+                        name: "FK_Vanzare_PossibleBuyer_PossibleBuyerID",
                         column: x => x.PossibleBuyerID,
                         principalTable: "PossibleBuyer",
                         principalColumn: "ID");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rent_HomeID",
-                table: "Rent",
+                name: "IX_Vanzare_HomeID",
+                table: "Vanzare",
                 column: "HomeID",
                 unique: true,
                 filter: "[HomeID] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rent_PossibleBuyerID",
-                table: "Rent",
+                name: "IX_Vanzare_PossibleBuyerID",
+                table: "Vanzare",
                 column: "PossibleBuyerID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Rent");
+                name: "Vanzare");
 
             migrationBuilder.DropColumn(
-                name: "RentID",
+                name: "VanzareID",
                 table: "Home");
 
             migrationBuilder.RenameColumn(

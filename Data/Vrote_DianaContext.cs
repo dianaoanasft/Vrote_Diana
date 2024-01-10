@@ -23,20 +23,16 @@ namespace Vrote_Diana.Data
 
         public DbSet<Vrote_Diana.Models.Location>? Location { get; set; }
 
-        public DbSet<Vrote_Diana.Models.Rent>? Rent { get; set; }
-
-
+        public DbSet<Vrote_Diana.Models.Vanzare>? Vanzare { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Home>()
-                .HasOne(b => b.Rent)
+                .HasOne(b => b.Vanzare)
                 .WithOne(b => b.Home)
-                .HasForeignKey<Rent>(b => b.HomeID);
-
-
-
-
+                .HasForeignKey<Vanzare>(b => b.HomeID);
         }
+
+        public DbSet<Vrote_Diana.Models.Buyer>? Buyer { get; set; }
 
     }
 

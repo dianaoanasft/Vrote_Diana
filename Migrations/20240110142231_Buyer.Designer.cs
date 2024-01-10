@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vrote_Diana.Data;
 
@@ -11,9 +12,10 @@ using Vrote_Diana.Data;
 namespace Vrote_Diana.Migrations
 {
     [DbContext(typeof(Vrote_DianaContext))]
-    partial class Vrote_DianaContextModelSnapshot : ModelSnapshot
+    [Migration("20240110142231_Buyer")]
+    partial class Buyer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

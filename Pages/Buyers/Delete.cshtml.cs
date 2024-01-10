@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Vrote_Diana.Data;
 using Vrote_Diana.Models;
 
-namespace Vrote_Diana.Pages.Rents
+namespace Vrote_Diana.Pages.Buyers
 {
     public class DeleteModel : PageModel
     {
@@ -20,40 +20,40 @@ namespace Vrote_Diana.Pages.Rents
         }
 
         [BindProperty]
-      public Rent Rent { get; set; } = default!;
+      public Buyer Buyer { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Rent == null)
+            if (id == null || _context.Buyer == null)
             {
                 return NotFound();
             }
 
-            var rent = await _context.Rent.FirstOrDefaultAsync(m => m.ID == id);
+            var buyer = await _context.Buyer.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (rent == null)
+            if (buyer == null)
             {
                 return NotFound();
             }
             else 
             {
-                Rent = rent;
+                Buyer = buyer;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.Rent == null)
+            if (id == null || _context.Buyer == null)
             {
                 return NotFound();
             }
-            var rent = await _context.Rent.FindAsync(id);
+            var buyer = await _context.Buyer.FindAsync(id);
 
-            if (rent != null)
+            if (buyer != null)
             {
-                Rent = rent;
-                _context.Rent.Remove(Rent);
+                Buyer = buyer;
+                _context.Buyer.Remove(Buyer);
                 await _context.SaveChangesAsync();
             }
 

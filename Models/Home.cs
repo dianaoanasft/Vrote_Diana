@@ -21,14 +21,12 @@ namespace Vrote_Diana.Models
         [Range(1, 10000)]
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
+
         public int? LocationID { get; set; }
         public Location? Location { get; set; }
 
-        public int? RentID { get; set; }
-        public Rent? Rent { get; set; }
-
-        public int? SaleID { get; set; }
-        public Sale? Sale { get; set; }
+        public int? VanzareID { get; set; }
+        public Vanzare? Vanzare { get; set; }
     }
 }
 

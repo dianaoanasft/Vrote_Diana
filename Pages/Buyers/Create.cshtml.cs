@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Vrote_Diana.Data;
 using Vrote_Diana.Models;
 
-namespace Vrote_Diana.Pages.Rents
+namespace Vrote_Diana.Pages.Buyers
 {
     public class CreateModel : PageModel
     {
@@ -21,24 +21,22 @@ namespace Vrote_Diana.Pages.Rents
 
         public IActionResult OnGet()
         {
-        ViewData["HomeID"] = new SelectList(_context.Home, "ID", "ID");
-        ViewData["PossibleBuyerID"] = new SelectList(_context.PossibleBuyer, "ID", "ID");
             return Page();
         }
 
         [BindProperty]
-        public Rent Rent { get; set; } = default!;
+        public Buyer Buyer { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.Rent == null || Rent == null)
+          if (!ModelState.IsValid || _context.Buyer == null || Buyer == null)
             {
                 return Page();
             }
 
-            _context.Rent.Add(Rent);
+            _context.Buyer.Add(Buyer);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

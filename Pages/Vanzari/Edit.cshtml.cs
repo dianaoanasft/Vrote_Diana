@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Vrote_Diana.Data;
 using Vrote_Diana.Models;
 
-namespace Vrote_Diana.Pages.Rents
+namespace Vrote_Diana.Pages.Vanzari
 {
     public class EditModel : PageModel
     {
@@ -21,21 +21,21 @@ namespace Vrote_Diana.Pages.Rents
         }
 
         [BindProperty]
-        public Rent Rent { get; set; } = default!;
+        public Vanzare Vanzare { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.Rent == null)
+            if (id == null || _context.Vanzare == null)
             {
                 return NotFound();
             }
 
-            var rent =  await _context.Rent.FirstOrDefaultAsync(m => m.ID == id);
-            if (rent == null)
+            var vanzare =  await _context.Vanzare.FirstOrDefaultAsync(m => m.ID == id);
+            if (vanzare == null)
             {
                 return NotFound();
             }
-            Rent = rent;
+            Vanzare = vanzare;
            ViewData["HomeID"] = new SelectList(_context.Home, "ID", "Name");
            ViewData["PossibleBuyerID"] = new SelectList(_context.PossibleBuyer, "ID", "ID");
             return Page();
@@ -50,7 +50,7 @@ namespace Vrote_Diana.Pages.Rents
                 return Page();
             }
 
-            _context.Attach(Rent).State = EntityState.Modified;
+            _context.Attach(Vanzare).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace Vrote_Diana.Pages.Rents
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RentExists(Rent.ID))
+                if (!VanzareExists(Vanzare.ID))
                 {
                     return NotFound();
                 }
@@ -71,9 +71,9 @@ namespace Vrote_Diana.Pages.Rents
             return RedirectToPage("./Index");
         }
 
-        private bool RentExists(int id)
+        private bool VanzareExists(int id)
         {
-          return (_context.Rent?.Any(e => e.ID == id)).GetValueOrDefault();
+          return (_context.Vanzare?.Any(e => e.ID == id)).GetValueOrDefault();
         }
     }
 }

@@ -12,8 +12,8 @@ using Vrote_Diana.Data;
 namespace Vrote_Diana.Migrations
 {
     [DbContext(typeof(Vrote_DianaContext))]
-    [Migration("20240110091419_Rent")]
-    partial class Rent
+    [Migration("20240110132804_Vanzare")]
+    partial class Vanzare
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,11 +46,11 @@ namespace Vrote_Diana.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int?>("RentID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VanzareID")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -129,7 +129,7 @@ namespace Vrote_Diana.Migrations
                     b.ToTable("PossibleBuyer");
                 });
 
-            modelBuilder.Entity("Vrote_Diana.Models.Rent", b =>
+            modelBuilder.Entity("Vrote_Diana.Models.Vanzare", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -137,14 +137,17 @@ namespace Vrote_Diana.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
+                    b.Property<DateTime>("DataVanzare")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("HomeID")
                         .HasColumnType("int");
 
                     b.Property<int?>("PossibleBuyerID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReturnDate")
-                        .HasColumnType("datetime2");
+                    b.Property<int?>("PretVanzare")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -154,7 +157,7 @@ namespace Vrote_Diana.Migrations
 
                     b.HasIndex("PossibleBuyerID");
 
-                    b.ToTable("Rent");
+                    b.ToTable("Vanzare");
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Home", b =>
@@ -166,11 +169,11 @@ namespace Vrote_Diana.Migrations
                     b.Navigation("Location");
                 });
 
-            modelBuilder.Entity("Vrote_Diana.Models.Rent", b =>
+            modelBuilder.Entity("Vrote_Diana.Models.Vanzare", b =>
                 {
                     b.HasOne("Vrote_Diana.Models.Home", "Home")
-                        .WithOne("Rent")
-                        .HasForeignKey("Vrote_Diana.Models.Rent", "HomeID");
+                        .WithOne("Vanzare")
+                        .HasForeignKey("Vrote_Diana.Models.Vanzare", "HomeID");
 
                     b.HasOne("Vrote_Diana.Models.PossibleBuyer", "PossibleBuyer")
                         .WithMany()
@@ -183,7 +186,7 @@ namespace Vrote_Diana.Migrations
 
             modelBuilder.Entity("Vrote_Diana.Models.Home", b =>
                 {
-                    b.Navigation("Rent");
+                    b.Navigation("Vanzare");
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Location", b =>
