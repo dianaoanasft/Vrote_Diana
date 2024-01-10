@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Vrote_Diana.Data;
 using Vrote_Diana.Models;
 
-namespace Vrote_Diana.Pages.PossibleBuyers
+namespace Vrote_Diana.Pages.Contacts
 {
     public class IndexModel : PageModel
     {
@@ -19,13 +19,13 @@ namespace Vrote_Diana.Pages.PossibleBuyers
             _context = context;
         }
 
-        public IList<PossibleBuyer> PossibleBuyer { get;set; } = default!;
+        public IList<Contact> Contact { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.PossibleBuyer != null)
+            if (_context.Contact != null)
             {
-                PossibleBuyer = await _context.PossibleBuyer.ToListAsync();
+                Contact = await _context.Contact.ToListAsync();
             }
         }
     }

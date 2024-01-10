@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Vrote_Diana.Data;
 using Vrote_Diana.Models;
 
-namespace Vrote_Diana.Pages.PossibleBuyers
+namespace Vrote_Diana.Pages.Contacts
 {
     public class CreateModel : PageModel
     {
@@ -25,18 +25,18 @@ namespace Vrote_Diana.Pages.PossibleBuyers
         }
 
         [BindProperty]
-        public PossibleBuyer PossibleBuyer { get; set; } = default!;
+        public Contact Contact { get; set; } = default!;
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid || _context.PossibleBuyer == null || PossibleBuyer == null)
+          if (!ModelState.IsValid || _context.Contact == null || Contact == null)
             {
                 return Page();
             }
 
-            _context.PossibleBuyer.Add(PossibleBuyer);
+            _context.Contact.Add(Contact);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

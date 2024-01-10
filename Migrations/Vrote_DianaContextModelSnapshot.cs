@@ -51,7 +51,7 @@ namespace Vrote_Diana.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Buyer");
+                    b.ToTable("Buyer", (string)null);
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Home", b =>
@@ -86,7 +86,7 @@ namespace Vrote_Diana.Migrations
 
                     b.HasIndex("LocationID");
 
-                    b.ToTable("Home");
+                    b.ToTable("Home", (string)null);
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.HomeType", b =>
@@ -107,7 +107,7 @@ namespace Vrote_Diana.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HomeType");
+                    b.ToTable("HomeType", (string)null);
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Location", b =>
@@ -124,7 +124,7 @@ namespace Vrote_Diana.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Location");
+                    b.ToTable("Location", (string)null);
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.PossibleBuyer", b =>
@@ -156,7 +156,7 @@ namespace Vrote_Diana.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("PossibleBuyer");
+                    b.ToTable("PossibleBuyer", (string)null);
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Vanzare", b =>
@@ -192,7 +192,7 @@ namespace Vrote_Diana.Migrations
 
                     b.HasIndex("PossibleBuyerID");
 
-                    b.ToTable("Vanzare");
+                    b.ToTable("Vanzare", (string)null);
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Home", b =>

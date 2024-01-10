@@ -1,5 +1,5 @@
 ﻿@page
-@model Vrote_Diana.Pages.Vanzari.IndexModel
+@model Vrote_Diana.Pages.Contacts.IndexModel
 
 @{
     ViewData["Title"] = "Index";
@@ -14,34 +14,34 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Vanzare[0].Buyer)
+                @Html.DisplayNameFor(model => model.Contact[0].ContactName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vanzare[0].Home)
+                @Html.DisplayNameFor(model => model.Contact[0].ContactPhone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vanzare[0].DataVanzare)
+                @Html.DisplayNameFor(model => model.Contact[0].ContactEmail)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Vanzare[0].PretVanzare)
+                @Html.DisplayNameFor(model => model.Contact[0].ContactAdress)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Vanzare) {
+@foreach (var item in Model.Contact) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Buyer.FullName)
+                @Html.DisplayFor(modelItem => item.ContactName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Home.Name)
+                @Html.DisplayFor(modelItem => item.ContactPhone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataVanzare)
+                @Html.DisplayFor(modelItem => item.ContactEmail)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PretVanzare)
+                @Html.DisplayFor(modelItem => item.ContactAdress)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

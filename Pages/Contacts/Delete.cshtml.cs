@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Vrote_Diana.Data;
 using Vrote_Diana.Models;
 
-namespace Vrote_Diana.Pages.PossibleBuyers
+namespace Vrote_Diana.Pages.Contacts
 {
     public class DeleteModel : PageModel
     {
@@ -20,40 +20,40 @@ namespace Vrote_Diana.Pages.PossibleBuyers
         }
 
         [BindProperty]
-      public PossibleBuyer PossibleBuyer { get; set; } = default!;
+      public Contact Contact { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null || _context.PossibleBuyer == null)
+            if (id == null || _context.Contact == null)
             {
                 return NotFound();
             }
 
-            var possiblebuyer = await _context.PossibleBuyer.FirstOrDefaultAsync(m => m.ID == id);
+            var contact = await _context.Contact.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (possiblebuyer == null)
+            if (contact == null)
             {
                 return NotFound();
             }
             else 
             {
-                PossibleBuyer = possiblebuyer;
+                Contact = contact;
             }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null || _context.PossibleBuyer == null)
+            if (id == null || _context.Contact == null)
             {
                 return NotFound();
             }
-            var possiblebuyer = await _context.PossibleBuyer.FindAsync(id);
+            var contact = await _context.Contact.FindAsync(id);
 
-            if (possiblebuyer != null)
+            if (contact != null)
             {
-                PossibleBuyer = possiblebuyer;
-                _context.PossibleBuyer.Remove(PossibleBuyer);
+                Contact = contact;
+                _context.Contact.Remove(Contact);
                 await _context.SaveChangesAsync();
             }
 

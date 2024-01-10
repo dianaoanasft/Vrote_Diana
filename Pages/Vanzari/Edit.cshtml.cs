@@ -37,7 +37,7 @@ namespace Vrote_Diana.Pages.Vanzari
             }
             Vanzare = vanzare;
            ViewData["HomeID"] = new SelectList(_context.Home, "ID", "Name");
-           ViewData["PossibleBuyerID"] = new SelectList(_context.PossibleBuyer, "ID", "ID");
+           ViewData["BuyerID"] = new SelectList(_context.Buyer, "ID", "FullName");
             return Page();
         }
 

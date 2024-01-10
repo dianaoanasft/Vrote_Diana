@@ -20,6 +20,8 @@ namespace Vrote_Diana.Pages.Vanzari
         }
 
         public IList<Vanzare> Vanzare { get;set; } = default!;
+        
+        public int BuyerID { get; set; }
 
         public async Task OnGetAsync()
         {
@@ -27,8 +29,13 @@ namespace Vrote_Diana.Pages.Vanzari
             {
                 Vanzare = await _context.Vanzare
                 .Include(v => v.Home)
-                .Include(v => v.PossibleBuyer).ToListAsync();
+                .Include(v => v.Buyer).ToListAsync();
             }
+            var buyerList = _context.Buyer.Select(x => new
+            {
+                x.ID,
+                FullName = x.LastName + " " + x.FirstName
+            });
         }
     }
 }

@@ -17,8 +17,6 @@ namespace Vrote_Diana.Data
 
         public DbSet<Vrote_Diana.Models.Home> Home { get; set; } = default!;
 
-        public DbSet<Vrote_Diana.Models.PossibleBuyer>? PossibleBuyer { get; set; }
-
         public DbSet<Vrote_Diana.Models.HomeType>? HomeType { get; set; }
 
         public DbSet<Vrote_Diana.Models.Location>? Location { get; set; }
@@ -33,6 +31,7 @@ namespace Vrote_Diana.Data
         }
 
         public DbSet<Vrote_Diana.Models.Buyer>? Buyer { get; set; }
+        public DbSet<Vrote_Diana.Models.Contact?> Contact { get; set; }
 
     }
 
