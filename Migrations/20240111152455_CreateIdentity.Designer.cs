@@ -12,7 +12,7 @@ using Vrote_Diana.Data;
 namespace Vrote_Diana.Migrations.LibraryIdentity
 {
     [DbContext(typeof(LibraryIdentityContext))]
-    [Migration("20240110173936_CreateIdentity")]
+    [Migration("20240111152455_CreateIdentity")]
     partial class CreateIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
