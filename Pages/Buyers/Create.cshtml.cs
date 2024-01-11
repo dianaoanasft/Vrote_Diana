@@ -20,7 +20,9 @@ namespace Vrote_Diana.Pages.Buyers
         }
 
         public IActionResult OnGet()
+
         {
+            ViewData["MemberID"] = new SelectList(_context.Member, "ID", "FullName");
             return Page();
         }
 

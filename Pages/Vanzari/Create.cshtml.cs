@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -28,10 +27,11 @@ namespace Vrote_Diana.Pages.Vanzari
         }
 
         public IActionResult OnGet()
-        {
-          
+        {          
+
             ViewData["HomeID"] = new SelectList(_context.Home, "ID", "ID");
             ViewData["BuyerID"] = new SelectList(_context.Buyer, "ID", "FullName");
+            ViewData["MemberID"] = new SelectList(_context.Member, "ID","FullName");
             return Page();
         }
 

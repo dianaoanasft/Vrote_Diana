@@ -27,6 +27,11 @@ namespace Vrote_Diana.Models
 
         public int? VanzareID { get; set; }
         public Vanzare? Vanzare { get; set; }
+
+        public int? MemberID { get; set; }
+        public Member? Member { get; set; }
+
+
     }
 }
 

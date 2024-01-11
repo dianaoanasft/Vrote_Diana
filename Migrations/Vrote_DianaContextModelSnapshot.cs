@@ -46,12 +46,47 @@ namespace Vrote_Diana.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MemberID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
-                    b.ToTable("Buyer", (string)null);
+                    b.HasIndex("MemberID");
+
+                    b.ToTable("Buyer");
+                });
+
+            modelBuilder.Entity("Vrote_Diana.Models.ContactInfo", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("ContactAdress")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
+
+                    b.Property<string>("ContactEmail")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContactPhone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ContactInfo");
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Home", b =>
@@ -66,6 +101,9 @@ namespace Vrote_Diana.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("LocationID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MemberID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -86,7 +124,9 @@ namespace Vrote_Diana.Migrations
 
                     b.HasIndex("LocationID");
 
-                    b.ToTable("Home", (string)null);
+                    b.HasIndex("MemberID");
+
+                    b.ToTable("Home");
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.HomeType", b =>
@@ -107,7 +147,7 @@ namespace Vrote_Diana.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HomeType", (string)null);
+                    b.ToTable("HomeType");
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Location", b =>
@@ -124,10 +164,10 @@ namespace Vrote_Diana.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Location", (string)null);
+                    b.ToTable("Location");
                 });
 
-            modelBuilder.Entity("Vrote_Diana.Models.PossibleBuyer", b =>
+            modelBuilder.Entity("Vrote_Diana.Models.Member", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -156,7 +196,7 @@ namespace Vrote_Diana.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("PossibleBuyer", (string)null);
+                    b.ToTable("Member");
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Vanzare", b =>
@@ -176,7 +216,7 @@ namespace Vrote_Diana.Migrations
                     b.Property<int?>("HomeID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PossibleBuyerID")
+                    b.Property<int?>("MemberID")
                         .HasColumnType("int");
 
                     b.Property<int?>("PretVanzare")
@@ -190,9 +230,18 @@ namespace Vrote_Diana.Migrations
                         .IsUnique()
                         .HasFilter("[HomeID] IS NOT NULL");
 
-                    b.HasIndex("PossibleBuyerID");
+                    b.HasIndex("MemberID");
 
-                    b.ToTable("Vanzare", (string)null);
+                    b.ToTable("Vanzare");
+                });
+
+            modelBuilder.Entity("Vrote_Diana.Models.Buyer", b =>
+                {
+                    b.HasOne("Vrote_Diana.Models.Member", "Member")
+                        .WithMany("Buyers")
+                        .HasForeignKey("MemberID");
+
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Home", b =>
@@ -201,7 +250,13 @@ namespace Vrote_Diana.Migrations
                         .WithMany("Homes")
                         .HasForeignKey("LocationID");
 
+                    b.HasOne("Vrote_Diana.Models.Member", "Member")
+                        .WithMany()
+                        .HasForeignKey("MemberID");
+
                     b.Navigation("Location");
+
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Vanzare", b =>
@@ -214,15 +269,15 @@ namespace Vrote_Diana.Migrations
                         .WithOne("Vanzare")
                         .HasForeignKey("Vrote_Diana.Models.Vanzare", "HomeID");
 
-                    b.HasOne("Vrote_Diana.Models.PossibleBuyer", "PossibleBuyer")
+                    b.HasOne("Vrote_Diana.Models.Member", "Member")
                         .WithMany()
-                        .HasForeignKey("PossibleBuyerID");
+                        .HasForeignKey("MemberID");
 
                     b.Navigation("Buyer");
 
                     b.Navigation("Home");
 
-                    b.Navigation("PossibleBuyer");
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("Vrote_Diana.Models.Buyer", b =>
@@ -238,6 +293,11 @@ namespace Vrote_Diana.Migrations
             modelBuilder.Entity("Vrote_Diana.Models.Location", b =>
                 {
                     b.Navigation("Homes");
+                });
+
+            modelBuilder.Entity("Vrote_Diana.Models.Member", b =>
+                {
+                    b.Navigation("Buyers");
                 });
 #pragma warning restore 612, 618
         }

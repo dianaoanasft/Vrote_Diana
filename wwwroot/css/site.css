@@ -15,4 +15,19 @@ html {
 
 body {
   margin-bottom: 60px;
+
 }
+.nav-sales {
+    background-color: #add8e6; /* Light Blue */
+    color:lightskyblue; /* Change text color if needed */
+}
+
+.nav-buyers {
+    background-color: #90ee90; /* Light Green */
+    color: lightskyblue; /* Change text color if needed */
+}
+.nav-zillow {
+   
+    color:palevioletred; /* Change text color if needed */
+}
+

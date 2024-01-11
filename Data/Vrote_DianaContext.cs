@@ -31,7 +31,9 @@ namespace Vrote_Diana.Data
         }
 
         public DbSet<Vrote_Diana.Models.Buyer>? Buyer { get; set; }
-        public DbSet<Vrote_Diana.Models.Contact?> Contact { get; set; }
+        public DbSet<Vrote_Diana.Models.ContactInfo>? ContactInfo { get; set; }
+        public DbSet<Vrote_Diana.Models.Member>? Member { get; set; }
+
 
     }
 

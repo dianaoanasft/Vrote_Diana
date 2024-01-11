@@ -28,7 +28,12 @@ namespace Vrote_Diana.Models
 
         public int? BuyerID { get; set; }
         public Buyer? Buyer { get; set; }
-       
+
+        public int? MemberID { get; set; }
+        public Member? Member { get; set; }
+
+
+
     }
 }
 

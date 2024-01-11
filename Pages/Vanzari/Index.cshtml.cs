@@ -29,13 +29,22 @@ namespace Vrote_Diana.Pages.Vanzari
             {
                 Vanzare = await _context.Vanzare
                 .Include(v => v.Home)
+                .ThenInclude(v => v.Member)
                 .Include(v => v.Buyer).ToListAsync();
+                
             }
             var buyerList = _context.Buyer.Select(x => new
             {
                 x.ID,
                 FullName = x.LastName + " " + x.FirstName
             });
+
+            var memberList = _context.Member.Select(x => new
+            {
+                x.ID,
+                FullName = x.LastName + " " + x.FirstName
+            });
+
         }
     }
 }

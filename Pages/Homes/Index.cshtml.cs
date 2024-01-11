@@ -26,7 +26,13 @@ namespace Vrote_Diana.Pages.Homes
             if (_context.Home != null)
             {
                 Home = await _context.Home.ToListAsync();
+
             }
+            var memberList = _context.Member.Select(x => new
+            {
+                x.ID,
+                FullName = x.LastName + " " + x.FirstName
+            });
         }
     }
 }

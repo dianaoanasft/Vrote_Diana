@@ -27,6 +27,11 @@ namespace Vrote_Diana.Pages.Buyers
             {
                 Buyer = await _context.Buyer.ToListAsync();
             }
+            var memberList = _context.Member.Select(x => new
+            {
+                x.ID,
+                FullName = x.LastName + " " + x.FirstName
+            });
         }
     }
 }
